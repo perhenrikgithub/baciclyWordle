@@ -1,4 +1,4 @@
-const wordOfDay = "hacke";
+const wordOfDay = "tafse";
 
 let keyboard = document.getElementById("keyboard");
 keyboard.addEventListener("click", getLetter);
