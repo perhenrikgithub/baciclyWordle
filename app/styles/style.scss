@@ -1,0 +1,247 @@
+@import "typography";
+@import "globals";
+@import "colors";
+@import "effects";
+
+html {
+    --game-width: 22em;
+    --game-height: 25em;
+    // colors
+    --white: rgba(white, 0.9);
+    --black: rgba(black, 0.9);
+}
+
+// ===========
+// header
+// ===========
+
+header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1em;
+    box-shadow: 0px 7px 15px 0px #eeeeeea1;
+    height: 100%;
+}
+
+// ===========
+// modal
+// ===========
+
+// -------------- BUTTON
+
+.button {
+    appearance: none;
+    cursor: pointer;
+    color: black;
+    &:hover {
+        color: rgba(black, 0.75);
+    }
+}
+// -------------- DETAILS MODAL
+.details-modal {
+    background: #ffffff;
+    border-radius: 0.5em;
+    box-shadow: 0 10px 20px rgba(black, 0.2);
+    left: 50%;
+    max-width: 90%;
+    pointer-events: none;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 30em;
+    text-align: left;
+    max-height: 90vh;
+    //grid
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: 1fr auto;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+        "details-modal-title details-modal-close"
+        "details-modal-content details-modal-content";
+
+    .details-modal-title {
+        grid-area: details-modal-title;
+        color: #111827;
+        padding: 1.5em 2em;
+        pointer-events: all;
+        position: relative;
+        width: calc(100% - 4.5em);
+
+        h1 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            line-height: normal;
+        }
+    }
+
+    .details-modal-close {
+        grid-area: details-modal-close;
+        display: grid;
+        place-items: center;
+        font-size: 2em;
+        width: 75px;
+        cursor: pointer;
+        pointer-events: none;
+    }
+
+    .details-modal-content {
+        grid-area: details-modal-content;
+        border-top: 1px solid #e0e0e0;
+        padding: 1.5em;
+        pointer-events: all;
+        overflow: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        & > *:not(:first-child) {
+            padding: 0.75em 0 0;
+        }
+        p {
+            margin-left: 0.4em;
+        }
+        .game-row {
+            .tile {
+                font-size: 1.1em;
+            }
+        }
+    }
+}
+
+// -------------- OVERLAY
+
+.details-modal-overlay {
+    transition: opacity 0.2s ease-out;
+    pointer-events: none;
+    background: rgba(#0f172a, 0.8);
+    position: fixed;
+    opacity: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    top: 0;
+
+    details[open] & {
+        pointer-events: all;
+        opacity: 0.5;
+    }
+}
+
+// -------------- DETAILS
+
+details {
+    height: 2em;
+    summary {
+        list-style: none;
+        &:focus {
+            outline: none;
+        }
+        &::-webkit-details-marker {
+            display: none;
+        }
+    }
+}
+
+.game-container {
+    display: flex;
+    flex-direction: column;
+    width: var(--game-width);
+    // border: 1px solid black;
+}
+.game-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    .tile {
+        background: white;
+        height: calc(calc(var(--game-width)) / 10);
+        aspect-ratio: 1;
+        margin: 0.1em;
+        // layout
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        vertical-align: middle;
+        // fonts
+        font-size: 2rem;
+        line-height: 2rem;
+        font-weight: bold;
+        color: black;
+        text-transform: uppercase;
+        // accessibility
+        user-select: none;
+        // border
+        border: 1px solid black;
+    }
+    // skrive inn - tiles
+    [data-state="empty"] {
+        // "tile" uten bokstav
+        border: 1px solid lightgray;
+    }
+
+    // fra tidligere runder
+    [data-state="wrong"] {
+        // "tile" med bokstav som ikke finnes i ordet
+        border: 1px solid #7f837d;
+        background: #7f837d;
+        color: rgba(white, 0.95);
+    }
+
+    [data-state="somewhatCorrect"] {
+        // "tile" med bokstav som finnes i ordet -> feil plass
+        border: 1px solid #f3feb0;
+        background: #f3feb0; //c6ba25
+        color: rgba(black, 0.85);
+    }
+
+    [data-state="correct"] {
+        // "tile" med riktig bokstav
+        border: 1px solid #08a66c;
+        background: #08a66c;
+        color: white;
+    }
+}
+
+.keyboard-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .row {
+        display: flex;
+        padding: 0.25em 0;
+        .letter {
+            list-style: none;
+            background: #b6bdb2bf;
+            // padding: 0.75em;
+            height: 4em;
+            aspect-ratio: 3 / 4;
+            margin: 0 0.25em;
+            border: 0;
+            border-radius: 5px;
+            padding: 0.75em;
+            box-shadow: none;
+            cursor: pointer;
+            &:hover {
+                background: #c8d1c3;
+            }
+            &:active {
+                background: #dee6d9;
+            }
+        }
+        .used {
+            font-weight: 500;
+            background: #7f837d;
+            color: rgba(white, 0.95);
+        }
+        .enter {
+            aspect-ratio: 1.75;
+        }
+        .backspace {
+            aspect-ratio: 1.5;
+        }
+    }
+}

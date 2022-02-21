@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="no">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>worlde bacicly</title>
+        <!-- stylesheet (pure css) -->
+        <link rel="stylesheet" href="/app/styles/style.css" />
+        <!-- google fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Spartan:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+        <!-- font awsome (ikoner) -->
+        <script src="https://kit.fontawesome.com/0e385dceb6.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <header>
+            <details>
+                <summary>
+                    <div class="button"><i class="far fa-question-circle fa-2x"></i></div>
+                    <div class="details-modal-overlay"></div>
+                </summary>
+
+                <div class="details-modal">
+                    <div class="details-modal-close">×</div>
+                    <div class="details-modal-title">
+                        <h1>Hvordan spille</h1>
+                    </div>
+                    <div class="details-modal-content">
+                        <p>Gjett ordet på seks forsøk.</p>
+                        <p>Hver gjetning må være et gyldig ord på fem bokstaver. Trykk på enter-knappen for å sende inn.</p>
+                        <p>Etter hver gjetning vil fargen på flisene endres for å vise hvor nær gjettingen din var ordet.</p>
+                        <div class="game-row">
+                            <div class="tile" data-state="correct">s</div>
+                            <div class="tile" data-state="filled">a</div>
+                            <div class="tile" data-state="filled">t</div>
+                            <div class="tile" data-state="filled">a</div>
+                            <div class="tile" data-state="filled">n</div>
+                        </div>
+                        <p><b>S</b> er i ordet og på riktig plass</p>
+                        <div class="game-row">
+                            <div class="tile" data-state="filled">l</div>
+                            <div class="tile" data-state="somewhatCorrect">i</div>
+                            <div class="tile" data-state="filled">k</div>
+                            <div class="tile" data-state="filled">e</div>
+                            <div class="tile" data-state="filled">r</div>
+                        </div>
+                        <p><b>I</b> er i ordet, men på feil plass</p>
+                        <div class="game-row">
+                            <div class="tile" data-state="filled">b</div>
+                            <div class="tile" data-state="filled">a</div>
+                            <div class="tile" data-state="filled">n</div>
+                            <div class="tile" data-state="wrong">a</div>
+                            <div class="tile" data-state="filled">n</div>
+                        </div>
+                        <p><b>A</b> er ikke i ordet</p>
+                    </div>
+                </div>
+            </details>
+            <h1>Wordle bacicly</h1>
+            <details>
+                <summary>
+                    <div class="button"><i class="fas fa-american-sign-language-interpreting fa-2x"></i></div>
+                    <div class="details-modal-overlay"></div>
+                </summary>
+
+                <div class="details-modal">
+                    <div class="details-modal-close">×</div>
+                    <div class="details-modal-title">
+                        <h1>Denne gjør ikke noe ennå</h1>
+                    </div>
+                    <div class="details-modal-content">
+                        
+                    </div>
+                </div>
+            </details>
+        </header>
+            
+        </header>
+        <div class="game-container" id="game">
+            <div class="game-row">
+                <div class="tile" data-state="empty"></div>
+                <div class="tile" data-state="empty"></div>
+                <div class="tile" data-state="empty"></div>
+                <div class="tile" data-state="empty"></div>
+                <div class="tile" data-state="empty"></div>
+            </div>
+            <div class="game-row">
+                <div class="tile" data-state="empty"></div>
+                <div class="tile" data-state="empty"></div>
+                <div class="tile" data-state="empty"></div>
+                <div class="tile" data-state="empty"></div>
+                <div class="tile" data-state="empty"></div>
+            </div>
+            <div class="game-row">
+                <div class="tile" data-state="empty"></div>
+                <div class="tile" data-state="empty"></div>
+                <div class="tile" data-state="empty"></div>
+                <div class="tile" data-state="empty"></div>
+                <div class="tile" data-state="empty"></div>
+            </div>
+            <div class="game-row">
+                <div class="tile" data-state="empty"></div>
+                <div class="tile" data-state="empty"></div>
+                <div class="tile" data-state="empty"></div>
+                <div class="tile" data-state="empty"></div>
+                <div class="tile" data-state="empty"></div>
+            </div>
+            <div class="game-row">
+                <div class="tile" data-state="empty"></div>
+                <div class="tile" data-state="empty"></div>
+                <div class="tile" data-state="empty"></div>
+                <div class="tile" data-state="empty"></div>
+                <div class="tile" data-state="empty"></div>
+            </div>
+            <div class="game-row">
+                <div class="tile" data-state="empty"></div>
+                <div class="tile" data-state="empty"></div>
+                <div class="tile" data-state="empty"></div>
+                <div class="tile" data-state="empty"></div>
+                <div class="tile" data-state="empty"></div>
+            </div>
+        </div>
+        <div class="keyboard-container" id="keyboard">
+            <div class="row">
+                <button class="letter" data-letter="q">q</button>
+                <button class="letter" data-letter="w">w</button>
+                <button class="letter" data-letter="e">e</button>
+                <button class="letter" data-letter="r">r</button>
+                <button class="letter" data-letter="t">t</button>
+                <button class="letter" data-letter="y">y</button>
+                <button class="letter" data-letter="u">u</button>
+                <button class="letter" data-letter="i">i</button>
+                <button class="letter" data-letter="o">o</button>
+                <button class="letter" data-letter="p">p</button>
+                <button class="letter" data-letter="å">å</button>
+            </div>
+            <div class="row">
+                <button class="letter" data-letter="a">a</button>
+                <button class="letter" data-letter="s">s</button>
+                <button class="letter" data-letter="d">d</button>
+                <button class="letter" data-letter="f">f</button>
+                <button class="letter" data-letter="g">g</button>
+                <button class="letter" data-letter="h">h</button>
+                <button class="letter" data-letter="j">j</button>
+                <button class="letter" data-letter="k">k</button>
+                <button class="letter" data-letter="l">l</button>
+                <button class="letter" data-letter="ø">ø</button>
+                <button class="letter" data-letter="æ">æ</button>
+            </div>
+            <div class="row">
+                <button class="letter enter" data-letter="Enter">Prøv</button>
+                <button class="letter" data-letter="z">z</button>
+                <button class="letter" data-letter="x">x</button>
+                <button class="letter" data-letter="c">c</button>
+                <button class="letter" data-letter="v">v</button>
+                <button class="letter" data-letter="b">b</button>
+                <button class="letter" data-letter="n">n</button>
+                <button class="letter" data-letter="m">m</button>
+                <button class="letter backspace" data-letter="Backspace"><i class="fas fa-backspace"></i></button>
+            </div>
+        </div>
+
+        <script src="APP/js/script.js"></script>
+    </body>
+</html>

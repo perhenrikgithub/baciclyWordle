@@ -1,0 +1,9 @@
+$header-font: "Spartan", "Roboto", Arial, Helvetica, sans-serif;
+$main-font: "Oxygen", "Roboto", Arial, Helvetica, sans-serif;
+$logo-font: "Montserrat", "Spartan", Arial, Helvetica, sans-serif;
+// $x-font: 'Roboto', Arial, Helvetica, sans-serif;
+$y-font: "Open Sans", "Spartan", Arial;
+
+* {
+    font-family: $y-font;
+}
