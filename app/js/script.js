@@ -1,4 +1,4 @@
-const wordOfDay = "tafse";
+const wordOfDay = "jesus";
 
 let keyboard = document.getElementById("keyboard");
 keyboard.addEventListener("click", getLetter);
@@ -22,17 +22,16 @@ function getLetter(evt) {
 const allowedKeys = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "æ", "ø", "å", "Enter", "Backspace"];
 document.onkeydown = function (evt) {
     var letter = evt.key;
-
-    if (allowedKeys.includes(letter)) {
-        if (letter == "Backspace") {
-            backspace();
-            return;
-        }
-        if (letter == "Enter") {
-            enter();
-            return;
-        }
-        write(letter);
+    if (letter == "Backspace") {
+        backspace();
+        return;
+    }
+    if (letter == "Enter") {
+        enter();
+        return;
+    }
+    if (allowedKeys.includes(letter.toLowerCase())) {
+        write(letter.toLowerCase());
     }
 };
 
@@ -57,8 +56,39 @@ function write(letter) {
     }
 }
 
+function backspace() {
+    // changes activeColumn to last column with letter (if there are any)
+    if (activeColumn > 1) {
+        activeColumn -= 1;
+    }
+    let el = document.querySelector("#game :nth-child(" + activeRow + ") :nth-child(" + activeColumn + ")");
+    // removes letter
+    el.innerHTML = "";
+    // changes state of element
+    el.dataset.state = "empty";
+}
+
+function enter() {
+    // input = nodelist of all 5 letter-elements
+    let input = document.querySelectorAll("#game :nth-child(" + activeRow + ") *");
+    let word = "";
+    for (let i = 0; i < input.length; i++) {
+        let letter = input[i].innerHTML;
+        word += letter; // adds to each letters to word variable
+    }
+
+    // if word too short ->
+    if (word.length < 5) {
+        errorAnimation();
+    } else {
+        validateAwnser(word);
+    }
+}
+
 function errorAnimation() {
     let row = document.querySelector("#game :nth-child(" + activeRow + ")");
+    // console.error("row: " + activeRow);
+    // console.error(document.querySelector("#game :nth-child(" + activeRow + ")"));
     row.animate(
         [
             // keyframes
@@ -93,30 +123,37 @@ function errorAnimation() {
 }
 
 function validateAwnser(word) {
+    let untestedLetters = Array.from(wordOfDay);
+    console.log(untestedLetters);
     // runs 5 times (per position / per column)
     for (let i = 0; i < word.length; i++) {
         let y = i + 1;
         let el = document.querySelector("#game :nth-child(" + activeRow + ") :nth-child(" + y + ")");
         let keyEl = document.querySelector("[data-letter='" + word.charAt(i) + "']");
-        // if letter in colimn i is part of word of the day (yellow)
-        if (wordOfDay.includes(word.charAt(i))) {
-            el.dataset.state = "somewhatCorrect";
-            // keyboard
-            keyEl.style.background = "#f3feb0"; // yellow
-            keyEl.style.color = "black";
-        } else {
-            el.dataset.state = "wrong";
-            // keyboard
-            keyEl.classList += " used"; // gray
-        }
-        // if letter in column i is same as letter in same position (green) (overwrites includes() if true)
+
+        // if letter in column i is same as letter in same position (green)
         if (wordOfDay.charAt(i) == word.charAt(i)) {
             score += 1;
             el.dataset.state = "correct";
-            // keyboard
+            // keyboard styling
             keyEl.style.background = "#08a66c"; // green
             keyEl.style.color = "white";
+            // if letter is tested => remove from "correct word"
         }
+        // if letter in colimn i is part of word of the day (yellow)
+        else if (untestedLetters.includes(word.charAt(i))) {
+            el.dataset.state = "somewhatCorrect"; // gives tile data-state + yellow
+            // keyboard styling
+            keyEl.style.background = "#f3feb0"; // yellow
+            keyEl.style.color = "black";
+        }
+        if (!untestedLetters.includes(word.charAt(i))) {
+            el.dataset.state = "wrong";
+            // keyboard styling
+            keyEl.classList += " used"; // gray
+        }
+        untestedLetters.splice(untestedLetters.indexOf(word.charAt(i)), 1);
+        console.warn(untestedLetters);
     }
     if (score >= 5) {
         // game over -> win
@@ -132,34 +169,5 @@ function validateAwnser(word) {
         activeColumn = 1; // set column as first column
     } else {
         // no more rows available -> game over
-    }
-}
-
-function backspace() {
-    // changes activeColumn to last column with letter (if there are any)
-    if (activeColumn > 1) {
-        activeColumn -= 1;
-    }
-    let el = document.querySelector("#game :nth-child(" + activeRow + ") :nth-child(" + activeColumn + ")");
-    // removes letter
-    el.innerHTML = "";
-    // changes state of element
-    el.dataset.state = "empty";
-}
-
-function enter() {
-    // input = nodelist of all 5 letter-elements
-    let input = document.querySelectorAll("#game :nth-child(" + activeRow + ") *");
-    let word = "";
-    for (let i = 0; i < input.length; i++) {
-        let letter = input[i].innerHTML;
-        word += letter; // adds to each letters to word variable
-    }
-
-    // if word too short ->
-    if (word.length < 5) {
-        errorAnimation();
-    } else {
-        validateAwnser(word);
     }
 }
