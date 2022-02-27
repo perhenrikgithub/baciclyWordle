@@ -152,8 +152,8 @@ function validateAwnser(word) {
             // keyboard styling
             keyEl.classList += " used"; // gray
         }
-        untestedLetters.splice(untestedLetters.indexOf(word.charAt(i)), 1);
-        console.warn(untestedLetters);
+        // untestedLetters.splice(untestedLetters.indexOf(word.charAt(i)), 1);
+        // console.warn(untestedLetters);
     }
     if (score >= 5) {
         // game over -> win
