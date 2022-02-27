@@ -1,4 +1,4 @@
-const wordOfDay = "jesus";
+const wordOfDay = "marie";
 
 let keyboard = document.getElementById("keyboard");
 keyboard.addEventListener("click", getLetter);
